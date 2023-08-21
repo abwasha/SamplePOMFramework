@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 
 public class SearchTextTest extends BaseTest {
 
-    @Test
+    @Test(enabled = true)
     public void testSearchText()  {
         SearchResultPage searchResultPage=homePage.enterTextInSearchBar("outsource");
         String userInputText="SUCCESSFUL COMPANIES THAT OUTSOURCED SOME OF THEIR DEVELOPMENT";
