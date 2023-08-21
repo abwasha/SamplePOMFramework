@@ -6,10 +6,11 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Properties;
 
 public class DriverTypeSelection {
-
     public static WebDriver driver;
     Properties properties = new Properties();
 
@@ -23,6 +24,7 @@ public class DriverTypeSelection {
         }
     }
     public WebDriver SelectBrowserTypeAndPropertiesFromPropertiesFile() {
+
         if (properties.getProperty("BROWSER").equalsIgnoreCase("chrome")) {
             System.setProperty("web-driver.chrome.driver", properties.getProperty("CHROME_EXECUTABLE_PATH"));
             driver = new ChromeDriver();
