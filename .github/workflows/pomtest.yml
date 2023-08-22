@@ -27,7 +27,7 @@ jobs:
           sudo mv geckodriver /usr/local/bin/
           chmod +x /usr/local/bin/geckodriver
           geckodriver -V
-          cd /usr/local/bin/geckodriver
+          cd /usr/local/bin
           ls -l
           export PATH=$PATH:/usr/local/bin/geckodriver
           echo $PATH
