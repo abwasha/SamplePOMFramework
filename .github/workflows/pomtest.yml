@@ -1,12 +1,12 @@
 name: Run tests on POM framework
 on:
-   workflow_dispatch:
-      inputs:
-         branch: 
-          description: 'workflow_dispatch description : To be run on main branch'
-          default: 'main'
-          required: true
-         
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'workflow_dispatch description : To be run on main branch'
+        default: 'main'
+        required: true
+
 jobs:
   run-pom-tests:
     name: Job Name - Running Unit tests on POM framework
@@ -15,6 +15,19 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3.5.3
-      - name: run tests
-        run: mvn clean compile test
-    
+      - name: Install Firefox and GeckoDriver
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y firefox
+
+          # Download and install GeckoDriver
+          wget -O geckodriver.tar.gz https://github.com/mozilla/geckodriver/releases/download/v0.33.0/geckodriver-v0.33.0-linux64.tar.gz
+          tar -xzvf geckodriver.tar.gz
+          chmod +x geckodriver
+          sudo mv geckodriver /usr/local/bin/
+      - name: Build and run tests
+        run: |
+          mvn clean install
+
+          # Run your tests using Maven
+          mvn test
