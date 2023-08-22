@@ -1,0 +1,20 @@
+name: Run tests on POM framework
+on:
+   workflow_dispatch:
+      inputs:
+         branch: 
+          description: 'workflow_dispatch description : To be run on main branch'
+          default: 'main'
+          required: true
+         
+jobs:
+  run-pom-tests:
+    name: Job Name - Running Unit tests on POM framework
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3.5.3
+      - name: run tests
+        run: mvn clean compile test
+    
