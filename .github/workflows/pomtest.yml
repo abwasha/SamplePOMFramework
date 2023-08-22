@@ -1,7 +1,12 @@
 name: Run tests on POM framework
 on:
-   push:
-     branches: 'feature/*'
+   workflow_dispatch:
+      inputs:
+         branch: 
+          description: 'To be run on main branch'
+          default: 'main'
+          required: true
+         
 jobs:
   run-pom-tests:
     name: Running Unit tests on POM framework
