@@ -24,10 +24,10 @@ public class DriverTypeSelection {
     public WebDriver SelectBrowserTypeAndPropertiesFromPropertiesFile() {
 
         if (properties.getProperty("BROWSER").equalsIgnoreCase("chrome")) {
-            System.setProperty("web-driver.chrome.driver", properties.getProperty("CHROME_EXECUTABLE_PATH"));
+            System.setProperty("webdriver.chrome.driver", properties.getProperty("CHROME_EXECUTABLE_PATH"));
             driver = new ChromeDriver();
         } else if (properties.getProperty("BROWSER").equalsIgnoreCase("firefox")) {
-            System.setProperty("web-driver.gecko.driver", properties.getProperty("FIREFOX_EXECUTABLE_PATH"));
+            System.setProperty("webdriver.gecko.driver", properties.getProperty("FIREFOX_EXECUTABLE_PATH"));
             driver = new FirefoxDriver();
         } else {
             throw new IllegalArgumentException("Unsupported browser type: " + properties.getProperty("BROWSER"));
