@@ -3,13 +3,13 @@ on:
    workflow_dispatch:
       inputs:
          branch: 
-          description: 'To be run on main branch'
+          description: 'workflow_dispatch description : To be run on main branch'
           default: 'main'
           required: true
          
 jobs:
   run-pom-tests:
-    name: Running Unit tests on POM framework
+    name: Job Name - Running Unit tests on POM framework
     runs-on: ubuntu-latest
     
     steps:
