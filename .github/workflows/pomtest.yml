@@ -26,8 +26,8 @@ jobs:
           tar -xzvf geckodriver.tar.gz
           chmod +x geckodriver
           sudo mv geckodriver /usr/local/bin/
-          sudo cd /usr/local/bin
-          sudo ls -l
+          cd /usr/local/bin
+          ls -l
 
       - name: Build and run tests
         run: |
