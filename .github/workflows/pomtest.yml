@@ -27,6 +27,11 @@ jobs:
           sudo mv geckodriver /usr/local/bin/
           chmod +x /usr/local/bin/geckodriver
           geckodriver -V
+          cd /usr/local/bin/geckodriver
+          ls -l
+          export PATH=$PATH:/usr/local/bin/geckodriver
+          echo $PATH
+          echo "------------------------------"
 
       - name: Build and run tests
         run: |
