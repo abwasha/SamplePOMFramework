@@ -18,8 +18,6 @@ public class SearchResultPage {
     }
     public boolean searchResults(String userInputText){
         boolean result=false;
-        System.out.println("------userInputText--------");
-        System.out.println(userInputText);
        List<WebElement> list=driver.findElements(resultLinks);
         for (WebElement element:list) {
             System.out.println(element.getText());

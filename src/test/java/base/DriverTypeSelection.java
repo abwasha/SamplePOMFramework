@@ -6,8 +6,6 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Properties;
 
 public class DriverTypeSelection {
@@ -16,7 +14,7 @@ public class DriverTypeSelection {
 
     public DriverTypeSelection() {
         try {
-            FileInputStream inputStream = new FileInputStream("C:\\Users\\Administrator\\Documents\\GitHub\\SamplePOMFramework\\common.properties");
+            FileInputStream inputStream = new FileInputStream("common.properties");
             properties.load(inputStream);
             inputStream.close();
         } catch (IOException e) {
