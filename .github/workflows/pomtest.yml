@@ -15,6 +15,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3.5.3
+        
+      - name: Set up Firefox and run tests
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y firefox
+          
       - name: run tests
         run: mvn clean compile test
     
