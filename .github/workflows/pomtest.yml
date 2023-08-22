@@ -14,6 +14,7 @@ jobs:
     
     steps:
       - name: Checkout
+<<<<<<< HEAD
         uses: actions/checkout@v3.5.3
       - name: Install Firefox and GeckoDriver
         run: |
@@ -31,3 +32,11 @@ jobs:
 
           # Run your tests using Maven
           mvn test
+=======
+        uses: actions/checkout@v3.5.3      
+      - name: run tests
+        run: | 
+              mvn clean install
+              mvn test
+    
+>>>>>>> b75c9fc06677724511cf4091dafca93bfb346bd4
