@@ -17,17 +17,13 @@ jobs:
         uses: actions/checkout@v3.5.3
 
 
-      - name: Build and run tests
-        run:
-          #firefox --version
-          #geckodriver -V
-          #export PATH=$PATH:/usr/local/share/gecko_driver
-          #echo $PATH
-          #ping www.google.com &&
-          where java
-      - name: Set JAVA_HOME and display version
-        run: |
-           echo JAVA_HOME is %JAVA_HOME_17_X64%
-            %JAVA_HOME_17_X64%\bin\java -version
-          # Run your tests using Maven
-          #mvn test
+      - name: Set up Java 17
+        uses: actions/setup-java@v2
+        with:
+          java-version: 17 # Use the desired version
+
+      - name: Display Java version
+        run: java -version
+
+      - name: Display JAVA_HOME
+        run: echo "JAVA_HOME is $env:JAVA_HOME"
