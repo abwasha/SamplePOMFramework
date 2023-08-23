@@ -21,7 +21,7 @@ jobs:
         run: |
           firefox --version
           geckodriver -V
-          ping www. google.com
+          ping https://www.google.com/
           #mvn clean compile
           # Run your tests using Maven
           #mvn test
