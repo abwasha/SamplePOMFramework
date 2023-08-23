@@ -1,4 +1,4 @@
-name: Run tests on Firefox using POM framework
+name: Run tests on default Firefox using POM framework
 on:
   workflow_dispatch:
     inputs:
@@ -18,6 +18,8 @@ jobs:
 
       - name: Build and run tests
         run: |
+          firefox --version
+          geckodriver -V
           mvn clean install
           # Run your tests using Maven
           mvn test
