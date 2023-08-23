@@ -35,6 +35,7 @@ jobs:
           java -version
           uname -m
           firefox --version
+          file $(which firefox)
 
       - name: Build and run tests
         run: |
