@@ -25,5 +25,9 @@ jobs:
           #echo $PATH
           #ping www.google.com &&
           where java
+      - name: Set JAVA_HOME and display version
+        run: |
+           echo JAVA_HOME is %JAVA_HOME_17_X64%
+            %JAVA_HOME_17_X64%\bin\java -version
           # Run your tests using Maven
           #mvn test
