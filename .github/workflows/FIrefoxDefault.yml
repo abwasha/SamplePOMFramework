@@ -21,6 +21,8 @@ jobs:
         run: |
           firefox --version
           geckodriver -V
+          export PATH=$PATH:/usr/local/bin/geckodriver
+          echo $PATH
           ping https://www.google.com/
           #mvn clean compile
           # Run your tests using Maven
