@@ -20,9 +20,13 @@ jobs:
         run: |
           #sudo apt-get update
           #sudo apt-get install -y firefox
-          sudo snap remove firefox
-          sudo add-apt-repository ppa:mozillateam/ppa
-          sudo apt install firefox
+          #sudo snap remove firefox
+          #sudo add-apt-repository ppa:mozillateam/ppa
+          #sudo apt install firefox
+          wget -O firefox.tar.bz2 "https://download.mozilla.org/?product=firefox-latest&os=linux64&lang=en-US"
+          tar -xvf firefox.tar.bz2
+          sudo mv firefox /opt/
+          sudo ln -s /opt/firefox/firefox /usr/local/bin/
 
 
           # Download and install GeckoDriver
