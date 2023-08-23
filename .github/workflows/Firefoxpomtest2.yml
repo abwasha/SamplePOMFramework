@@ -1,0 +1,23 @@
+name: Run tests on Firefox using POM framework
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'workflow_dispatch description : To be run on main branch'
+        default: 'main'
+        required: true
+
+jobs:
+  run-pom-tests:
+    name: Job Name - Running Unit tests on POM framework
+    runs-on: ubuntu-20.04
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3.5.3
+
+      - name: Build and run tests
+        run: |
+          mvn clean install
+          # Run your tests using Maven
+          mvn test
