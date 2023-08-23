@@ -28,3 +28,6 @@ jobs:
 
       - name: Display JAVA_HOME
         run: echo "JAVA_HOME is $env:JAVA_HOME"
+
+      - name: Run test
+        run: mvn clean compile test
