@@ -23,8 +23,14 @@ jobs:
           java-version: '17'
           cache: 'maven'
 
-      - name: Display Java version
-        run: java -version
+      - name: Display Java Mozilla and WebDriver version
+        run: |
+          java -version
+          firefox --version
+          geckodriver --version
+          google-chrome --version
+          chromedriver --version
+          
 
       - name: Display JAVA_HOME
         run: echo "JAVA_HOME is $JAVA_HOME"

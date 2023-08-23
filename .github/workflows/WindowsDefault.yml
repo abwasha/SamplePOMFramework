@@ -27,7 +27,7 @@ jobs:
         run: java -version
 
       - name: Display JAVA_HOME
-        run: echo "JAVA_HOME is $env:JAVA_HOME"
+        run: echo "JAVA_HOME is $env:JAVA_HOME" &&
 
       - name: Display Drivers and its paths in runner machine
         run: cd C:\SeleniumWebDrivers\GeckoDriver && dir
