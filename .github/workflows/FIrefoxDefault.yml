@@ -23,7 +23,6 @@ jobs:
           #geckodriver -V
           #export PATH=$PATH:/usr/local/share/gecko_driver
           #echo $PATH
-          ping www.google.com ^
-          && mvn clean compile test
+          ping www.google.com && mvn clean compile test
           # Run your tests using Maven
           #mvn test
