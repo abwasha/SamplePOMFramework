@@ -1,4 +1,4 @@
-name: Run tests on POM framework
+name: Run tests on Chrome using POM framework
 on:
   workflow_dispatch:
     inputs:
