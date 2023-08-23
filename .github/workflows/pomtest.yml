@@ -20,8 +20,8 @@ jobs:
         run: |
           #sudo apt-get update
           #sudo apt-get install -y firefox
-          sudo add-apt-repository ppa:mozillateam/firefox-next
-          sudo apt update
+          sudo snap remove firefox
+          sudo add-apt-repository ppa:mozillateam/ppa
           sudo apt install firefox
 
 
