@@ -10,7 +10,7 @@ on:
 jobs:
   run-pom-tests:
     name: Job Name - Running Unit tests on POM framework
-    runs-on: windows-latest
+    runs-on: ubuntu-20.04
 
     steps:
       - name: Checkout
@@ -19,9 +19,9 @@ jobs:
       - name: Java 17 installation
         uses: actions/setup-java@v3
         with:
-            distribution: 'oracle' # See 'Supported distributions' for available options
-            java-version: '17'
-            cache: 'maven'
+          distribution: 'oracle' # See 'Supported distributions' for available options
+          java-version: '17'
+          cache: 'maven'
 
       - name: Display Java version
         run: java -version
@@ -29,8 +29,10 @@ jobs:
       - name: Display JAVA_HOME
         run: echo "JAVA_HOME is $env:JAVA_HOME"
 
-      - name: Display JAVA_HOME
-        run: cd C:\SeleniumWebDrivers\GeckoDriver && dir
+      - name: Display Mozilla driver
+        run: | 
+          cd /usr/local/share
+          ls -l
 
       - name: Run test
         run: mvn clean compile test
