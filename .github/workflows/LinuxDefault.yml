@@ -1,4 +1,4 @@
-name: Run tests on Windows with default Firefox/Chrome using POM framework
+name: Run tests on Linux with default Firefox/Chrome using POM framework
 on:
   workflow_dispatch:
     inputs:
