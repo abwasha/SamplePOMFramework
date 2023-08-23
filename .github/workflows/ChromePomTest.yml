@@ -16,14 +16,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3.5.3
 
-      - name: Set up Chrome
-        run: |
-            Install Google Chrome
-            wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | gpg --dearmor -o /usr/share/keyrings/google-archive-keyring.gpg
-            echo "deb [signed-by=/usr/share/keyrings/google-archive-keyring.gpg] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
-            sudo apt update
-            sudo apt install -y google-chrome-stable
-      - name: Set up ChromeDriver
+      - name: Download and install Chrome Driver
         run: |
             # Download and install ChromeDriver
             CHROMEDRIVER_VERSION=$(curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE)
@@ -31,12 +24,13 @@ jobs:
             unzip chromedriver_linux64.zip
             sudo mv chromedriver /usr/local/bin/
             rm chromedriver_linux64.zip
-            
+      - name: Download and install Chrome Browser
+        run: |
             # Check Chrome versions and install
-            #wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | gpg --dearmor -o /usr/share/keyrings/google-archive-keyring.gpg
-            #echo "deb [arch=amd64 signed-by=/usr/share/keyrings/google-archive-keyring.gpg] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
-            #sudo apt update
-            #sudo apt install google-chrome-stable=114.0.5735.110
+            wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | gpg --dearmor -o /usr/share/keyrings/google-archive-keyring.gpg
+            echo "deb [arch=amd64 signed-by=/usr/share/keyrings/google-archive-keyring.gpg] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
+            sudo apt update
+            sudo apt install google-chrome-stable=114.0.5735.110
             chrome --version
             chromedriver --version
 
