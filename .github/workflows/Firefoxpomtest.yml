@@ -10,7 +10,7 @@ on:
 jobs:
   run-pom-tests:
     name: Job Name - Running Unit tests on POM framework
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
     
     steps:
       - name: Checkout
