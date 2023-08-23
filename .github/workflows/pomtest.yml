@@ -23,7 +23,7 @@ jobs:
 
           # Download and install GeckoDriver
           wget -O geckodriver.tar.gz https://github.com/mozilla/geckodriver/releases/download/v0.33.0/geckodriver-v0.33.0-linux64.tar.gz
-          tar -xzvf geckodriver.tar.gz
+          sudo tar -xzvf geckodriver.tar.gz
           chmod 7777 geckodriver
           sudo mv geckodriver /usr/local/bin/
           geckodriver -V
@@ -33,6 +33,7 @@ jobs:
           echo $PATH
           echo "------------------------------"
           java -version
+          uname -m
 
       - name: Build and run tests
         run: |
