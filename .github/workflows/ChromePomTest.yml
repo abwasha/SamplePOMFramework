@@ -18,11 +18,11 @@ jobs:
 
       - name: Set up Chrome
         run: |
-            # Install Google Chrome
-            #wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | gpg --dearmor -o /usr/share/keyrings/google-archive-keyring.gpg
-            #echo "deb [signed-by=/usr/share/keyrings/google-archive-keyring.gpg] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
-            #sudo apt update
-            #sudo apt install -y google-chrome-stable
+            Install Google Chrome
+            wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | gpg --dearmor -o /usr/share/keyrings/google-archive-keyring.gpg
+            echo "deb [signed-by=/usr/share/keyrings/google-archive-keyring.gpg] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
+            sudo apt update
+            sudo apt install -y google-chrome-stable
       - name: Set up ChromeDriver
         run: |
             # Download and install ChromeDriver
@@ -32,12 +32,12 @@ jobs:
             sudo mv chromedriver /usr/local/bin/
             rm chromedriver_linux64.zip
             
-            # Check Chrome and ChromeDriver versions
+            # Check Chrome versions and install
             #wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | gpg --dearmor -o /usr/share/keyrings/google-archive-keyring.gpg
             #echo "deb [arch=amd64 signed-by=/usr/share/keyrings/google-archive-keyring.gpg] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
             #sudo apt update
             #sudo apt install google-chrome-stable=VERSION
-
+            chrome --version
             chromedriver --version
 
       - name: Build and run tests
