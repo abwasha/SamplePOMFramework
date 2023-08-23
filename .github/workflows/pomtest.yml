@@ -40,6 +40,7 @@ jobs:
           pwd
           ls -l
           export PATH=$PATH:/usr/local/bin/geckodriver
+          export PATH=$PATH:/usr/local/bin/firefox
           echo $PATH
           java -version
           uname -m
