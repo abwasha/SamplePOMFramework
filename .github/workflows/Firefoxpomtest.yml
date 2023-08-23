@@ -41,7 +41,7 @@ jobs:
           cd /usr/local/bin
           pwd
           ls -l
-          export PATH=$PATH:/usr/local/share/gecko_driver
+          export PATH=$PATH:/usr/local/bin/geckodriver
           echo $PATH
           java -version
           uname -m

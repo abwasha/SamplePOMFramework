@@ -21,7 +21,7 @@ jobs:
         run: |
           firefox --version
           geckodriver -V
-          export PATH=$PATH:/usr/local/bin/geckodriver
+          export PATH=$PATH:/usr/local/share/gecko_driver
           echo $PATH
           ping https://www.google.com/
           #mvn clean compile
