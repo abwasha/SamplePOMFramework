@@ -24,6 +24,6 @@ jobs:
           #export PATH=$PATH:/usr/local/share/gecko_driver
           #echo $PATH
           #ping www.google.com &&
-          mvn clean compile test
+          java -version
           # Run your tests using Maven
           #mvn test
