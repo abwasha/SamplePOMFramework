@@ -22,7 +22,6 @@ jobs:
             distribution: 'oracle' # See 'Supported distributions' for available options
             java-version: '17'
             cache: 'maven'
-      - run: java HelloWorldApp.java
 
       - name: Display Java version
         run: java -version
