@@ -32,10 +32,5 @@ jobs:
       - name: Display JAVA_HOME
         run: cd C:\SeleniumWebDrivers\GeckoDriver && dir
 
-      - name: Set environment variables
-        run: |
-         echo "webdriver.chrome.driver=C:\\SeleniumWebDrivers\\GeckoDriver\\geckodriver.exe" >> $GITHUB_ENV
-         echo "webdriver.gecko.driver=C:\\SeleniumWebDrivers\\ChromeDriver\\chromedriver.exe" >> $GITHUB_ENV
-
       - name: Run test
         run: mvn clean compile test
