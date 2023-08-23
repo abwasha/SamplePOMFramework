@@ -16,11 +16,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3.5.3
 
-
-      - name: Set up Java 17
-        uses: actions/setup-java@v2
+      - name: Java installation
+      - uses: actions/checkout@v3
+      - uses: actions/setup-java@v3
         with:
-          java-version: 17 # Use the desired version
+            distribution: 'oracle' # See 'Supported distributions' for available options
+            java-version: '17'
+            cache: 'maven'
+      - run: java HelloWorldApp.java
 
       - name: Display Java version
         run: java -version
