@@ -10,7 +10,7 @@ on:
 jobs:
   run-pom-tests:
     name: Job Name - Running Unit tests on POM framework
-    runs-on: ubuntu-20.04
+    runs-on: windows-latest
 
     steps:
       - name: Checkout
@@ -21,8 +21,8 @@ jobs:
         run: |
           firefox --version
           geckodriver -V
-          export PATH=$PATH:/usr/local/share/gecko_driver
-          echo $PATH
+          #export PATH=$PATH:/usr/local/share/gecko_driver
+          #echo $PATH
           ping www.google.com
           mvn clean compile test
           # Run your tests using Maven
