@@ -15,12 +15,12 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3.5.3
-        run: |
-          firefox --version
-          geckodriver -V
+
 
       - name: Build and run tests
         run: |
+          firefox --version
+          geckodriver -V
           mvn clean compile
           # Run your tests using Maven
           mvn test
