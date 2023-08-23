@@ -22,6 +22,11 @@ public class DriverTypeSelection {
         }
     }
     public WebDriver SelectBrowserTypeAndPropertiesFromPropertiesFile() {
+        String chrome = System.getenv("webdriver.chrome.driver");
+        String mozilla = System.getenv("webdriver.gecko.driver");
+
+        System.out.println("chrome Property 1: " + chrome);
+        System.out.println("mozilla Property 2: " + mozilla);
 
         if (properties.getProperty("BROWSER").equalsIgnoreCase("chrome")) {
             System.setProperty("webdriver.chrome.driver", properties.getProperty("CHROME_EXECUTABLE_PATH"));
