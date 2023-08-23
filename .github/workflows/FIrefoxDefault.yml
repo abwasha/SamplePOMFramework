@@ -18,9 +18,9 @@ jobs:
 
 
       - name: Build and run tests
-        run: |
-          firefox --version
-          geckodriver -V
+        run:
+          #firefox --version
+          #geckodriver -V
           #export PATH=$PATH:/usr/local/share/gecko_driver
           #echo $PATH
           ping www.google.com
