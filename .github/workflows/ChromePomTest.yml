@@ -1,0 +1,42 @@
+name: Run tests on POM framework
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'workflow_dispatch description : To be run on main branch'
+        default: 'main'
+        required: true
+
+jobs:
+  run-pom-tests:
+    name: Job Name - Running Unit tests on POM framework
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3.5.3
+
+      - name: Set up Chrome and ChromeDriver
+        run: |
+            # Install Google Chrome
+            wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | gpg --dearmor -o /usr/share/keyrings/google-archive-keyring.gpg
+            echo "deb [signed-by=/usr/share/keyrings/google-archive-keyring.gpg] http://dl.google.com/linux/chrome/deb/ stable main" | sudo tee /etc/apt/sources.list.d/google-chrome.list
+            sudo apt update
+            sudo apt install -y google-chrome-stable
+            
+            # Download and install ChromeDriver
+            CHROMEDRIVER_VERSION=$(curl -sS chromedriver.storage.googleapis.com/LATEST_RELEASE)
+            wget -q https://chromedriver.storage.googleapis.com/$CHROMEDRIVER_VERSION/chromedriver_linux64.zip
+            unzip chromedriver_linux64.zip
+            sudo mv chromedriver /usr/local/bin/
+            rm chromedriver_linux64.zip
+            
+            # Check Chrome and ChromeDriver versions
+            google-chrome-stable --version
+            chromedriver --version
+
+      - name: Build and run tests
+        run: |
+          mvn clean install
+          # Run your tests using Maven
+          mvn test
