@@ -6,7 +6,7 @@ on:
       - 'feature/*'
 jobs:
   define-environment:
-    name: 'Define the runner machine where job needs to run'
+    name: 'Running and uploading surefire reports to the artifacts'
     runs-on: windows-latest
 
     steps:
