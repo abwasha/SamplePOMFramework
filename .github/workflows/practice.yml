@@ -1,0 +1,35 @@
+name: Run unit test of feature branch
+
+on:
+  push:
+    branches:
+      - 'feature/*'
+jobs:
+  define-environment:
+    name: 'Define the runner machine where job needs to run'
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3.5.3
+
+      - name: Java 17 installation
+        uses: actions/setup-java@v3
+        with:
+          distribution: 'oracle' # See 'Supported distributions' for available options
+          java-version: '17'
+          cache: 'maven'
+
+      - name: Run test on push event
+        run: mvn clean compile test
+
+      - name: Upload reports
+        uses: actions/upload-artifact@v3.1.2
+        with:
+          name: surefire-reports
+          path: ./target/surefire-reports
+
+
+
+
+
