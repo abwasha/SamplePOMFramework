@@ -1,4 +1,5 @@
 name: Run tests on Windows with default Firefox/Chrome using POM framework
+run-name: Build by @${{github.actor}}
 on:
   workflow_dispatch:
     inputs:
