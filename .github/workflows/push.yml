@@ -1,4 +1,4 @@
-name: Run unit test of feature branch
+name: Push - Run unit test of feature branch
 
 on:
   push:
