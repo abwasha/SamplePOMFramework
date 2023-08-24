@@ -15,7 +15,7 @@ jobs:
         uses: seferov/pr-lint-action@v1.2.0
         with:
           # Pull Request Title
-          title-regex: ^Abdul PR -
+          title-regex: '^Abdul PR -'
       - name: Checkout
         uses: actions/checkout@v3.5.3
 
