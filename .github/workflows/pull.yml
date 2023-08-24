@@ -2,10 +2,7 @@ name: Pull - Run unit test of feature branch
 
 on:
   pull_request:
-    branches:
-      - 'feature/*'
-    types:
-      - opened
+    types: [opened]
 jobs:
   define-environment:
     name: 'Running and uploading surefire reports to the artifacts'
@@ -29,7 +26,7 @@ jobs:
           java-version: '17'
           cache: 'maven'
 
-      - name: Run test on push event
+      - name: Run test on pull event
         run: mvn clean compile test
 
       - name: Upload reports
