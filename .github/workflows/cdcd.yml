@@ -24,11 +24,15 @@ jobs:
           cache: 'maven'
 
       - name: Run tests
-        run: mvn clean compile test
+        run: mvn clean
 
   analyse:
      name: Run security check
      runs-on: windows-latest
+     permissions:
+       actions: read
+       contents: read
+       security-events: write
 
      strategy:
        fail-fast: false
