@@ -64,6 +64,6 @@ jobs:
           username: ${{ secrets.AWS_USER }}
           key: ${{ secrets.AWS_PASSWORD }}
           scripts: |
-            echo ${{var.AWS_PROJECT_PATH}}
-            cd ${{var.AWS_PROJECT_PATH}}
+            echo ${{vars.AWS_PROJECT_PATH}}
+            cd ${{vars.AWS_PROJECT_PATH}}
             Remove-Item '${{var.AWS_PROJECT_PATH}}\*' -Recurse
