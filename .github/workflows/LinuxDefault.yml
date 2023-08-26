@@ -3,7 +3,7 @@ run-name: Build by @${{github.actor}}
 on:
   workflow_dispatch:
     inputs:
-      branch:
+      name:
         description: 'workflow_dispatch description : To be run on main branch'
         default: 'main'
         required: true
