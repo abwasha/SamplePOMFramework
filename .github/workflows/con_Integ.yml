@@ -1,4 +1,4 @@
-name: Code security check.
+name: Continuous Integration to AWS instance.
 run-name: Executing CI/CD by ${{github.actor}}
 
 on:
@@ -51,3 +51,19 @@ jobs:
          uses: github/codeql-action/analyze@v2
          with:
             category: "/language:${{matrix.language}}"
+  cleanup:
+    needs: [build]
+    runs-on: windows-latest
+    environment: AWS_Demo
+
+    steps:
+      - name: Clean Up
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.AWS_HOST }}
+          username: ${{ secrets.AWS_USER }}
+          key: ${{ secrets.AWS_PASSWORD }}
+          scripts: |
+            echo ${{var.AWS_PROJECT_PATH}}
+            cd ${{var.AWS_PROJECT_PATH}}
+            Remove-Item '${{var.AWS_PROJECT_PATH}}\*' -Recurse
