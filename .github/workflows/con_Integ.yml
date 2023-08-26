@@ -66,4 +66,4 @@ jobs:
           scripts: |
             echo ${{vars.AWS_PROJECT_PATH}}
             cd ${{vars.AWS_PROJECT_PATH}}
-            Remove-Item '${{var.AWS_PROJECT_PATH}}\*' -Recurse
+            Remove-Item '${{vars.AWS_PROJECT_PATH}}\*' -Recurse
