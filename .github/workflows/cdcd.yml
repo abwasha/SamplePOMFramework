@@ -3,11 +3,7 @@ run-name: Executing CI/CD by ${{github.actor}}
 
 on:
   workflow_dispatch:
-    inputs:
-      name:
-        description: 'CI CD execution on feature branch'
-        default: "feature/*"
-        required: true
+
 jobs:
   build:
     runs-on: windows-latest
