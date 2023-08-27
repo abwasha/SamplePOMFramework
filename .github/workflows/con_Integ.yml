@@ -57,7 +57,7 @@ jobs:
     environment: AWS_Demo
 
     steps:
-      - name: Clean Up
+      - name: Clean-Up
         uses: appleboy/scp-action@v0.1.4
         with:
           host: ${{ secrets.AWS_HOST }}
@@ -70,7 +70,7 @@ jobs:
             Remove-Item '${{vars.AWS_PROJECT_PATH}}\*' -Recurse
 
   push_to_ec2:
-   needs: [clean-up]
+   needs: [cleanup]
    runs-on: ubuntu-latest
    environment: AWS_Demo
    steps:
