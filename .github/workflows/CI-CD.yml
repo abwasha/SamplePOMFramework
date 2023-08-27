@@ -72,8 +72,8 @@ jobs:
         run: |
           git clone https://github.com/abwasha/SamplePOMFramework.git
           cd SamplePOMFramework
-          dir
-          mvn clean compile test
+          echo %cd%
+          mvn clean
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
