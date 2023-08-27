@@ -70,7 +70,10 @@ jobs:
 
       - name: Check Folder
         run: |
-          cd "C:\Abdul_Demo"
+          cd ${{vars.AWS_PROJECT_PATH}}
+          echo dir
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Push code to EC2
         run: scp -r . Demo_User@ec2-18-230-5-50.sa-east-1.compute.amazonaws.com:${{vars.AWS_PROJECT_PATH}}
