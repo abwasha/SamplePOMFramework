@@ -71,6 +71,7 @@ jobs:
       - name: Clone Repo
         run: |
           git clone https://github.com/abwasha/SamplePOMFramework.git
+          cd
           cd SamplePOMFramework
           dir
         env:
