@@ -62,8 +62,7 @@ jobs:
         with:
           host: ${{ secrets.AWS_HOST }}
           username: ${{ secrets.AWS_USER }}
-          key: ${{ secrets.AWS_PASSWORD }}
-          shell: pwsh
+          password : ${{ secrets.AWS_PASSWORD }}
           scripts: |
             echo ${{vars.AWS_PROJECT_PATH}}
             cd ${{vars.AWS_PROJECT_PATH}}
