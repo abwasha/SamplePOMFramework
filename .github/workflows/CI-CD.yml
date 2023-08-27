@@ -54,7 +54,7 @@ jobs:
 
 
   push_to_ec2:
-   needs: [build]
+   #needs: [build]
    runs-on: ubuntu-latest
    environment: AWS_Demo
    steps:
@@ -67,10 +67,13 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: sa-east-1
+
       - name: Check Folder
         run: |
-          cd ${{vars.AWS_PROJECT_PATH}}
-          echo dir
+          cd "C:\Abdul_Demo"
+
+      - name: Push code to EC2
+        run: scp -r . Demo_User@ec2-18-230-5-50.sa-east-1.compute.amazonaws.com:${{vars.AWS_PROJECT_PATH}}
 
       - name: SSH into EC2 and perform actions
         run: |
