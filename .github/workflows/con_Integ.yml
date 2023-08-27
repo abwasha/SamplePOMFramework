@@ -58,12 +58,35 @@ jobs:
 
     steps:
       - name: Clean Up
-        uses: appleboy/scp-action@v1.0.0
+        uses: appleboy/scp-action@v0.1.4
         with:
           host: ${{ secrets.AWS_HOST }}
           username: ${{ secrets.AWS_USER }}
           key: ${{ secrets.AWS_PASSWORD }}
+          shell: pwsh
           scripts: |
             echo ${{vars.AWS_PROJECT_PATH}}
             cd ${{vars.AWS_PROJECT_PATH}}
             Remove-Item '${{vars.AWS_PROJECT_PATH}}\*' -Recurse
+
+  push_to_ec2:
+   needs: [clean-up]
+   runs-on: ubuntu-latest
+   environment: AWS_Demo
+   steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: your-aws-region
+
+      - name: Copy code to EC2
+        run: scp -r . ec2-user@your-ec2-instance-ip:/path/on/ec2/instance
+
+      - name: SSH into EC2 and perform actions
+        run: |
+          ssh ec2-user@your-ec2-instance-ip "cd /path/on/ec2/instance && your-command"
