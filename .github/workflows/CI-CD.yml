@@ -67,6 +67,12 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: sa-east-1
+      - name: Push code to EC2
+        run: scp -r . Demo_User@18.230.5.50:${{vars.AWS_PROJECT_PATH}}
+
+      - name: SSH into EC2 and perform actions
+        run: |
+          ssh Demo_User@18.230.5.50 "cd ${{vars.AWS_PROJECT_PATH}} && mvn compile test"
 
   cleanup:
     needs: [build]
