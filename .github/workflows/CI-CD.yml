@@ -89,9 +89,6 @@ jobs:
             java-version: '17'
             cache: 'maven'
 
-        - name: Build with Maven
-          run: mvn clean install
-
         - name: Copy artifacts to AWS
           uses: appleboy/scp-action@v0.1.4
           with:
