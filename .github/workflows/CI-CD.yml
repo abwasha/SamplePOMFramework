@@ -81,14 +81,14 @@ jobs:
           with:
             host: ${{ vars.AWS_LINUX_HOST }}
             username: ${{ vars.AWS_LINUX_USER }}
-            key: ${{ vars.AWS_LINUX_SSH_KEY }}
+            key: ${{ secrets.LINUX_SSH_KEY }}
             source: './'
-            target: '${{ secrets.LINUX_PROJECT_PATH }}'
+            target: '${{ vars.LINUX_PROJECT_PATH }}'
 
         - name: Copy code to AWS instance
           run: |
-            ssh -i ${{ secrets.LINUX_SSH_KEY }} ec2-user@${{ secrets.AWS_LINUX_HOST }} "mkdir -p ${{secrets.LINUX_PROJECT_PATH }}/project"
-            scp -i ${{ secrets.LINUX_SSH_KEY }} -r ./ ec2-user@${{ secrets.AWS_LINUX_HOST }}:${{secrets.LINUX_PROJECT_PATH }}/project
+            ssh -i ${{ secrets.LINUX_SSH_KEY }} ec2-user@${{ vars.AWS_LINUX_HOST }} "mkdir -p ${{vars.LINUX_PROJECT_PATH }}/project"
+            scp -i ${{ secrets.LINUX_SSH_KEY }} -r ./ ec2-user@${{ vars.AWS_LINUX_HOST }}:${{vars.LINUX_PROJECT_PATH }}/project
 
         - name: Java 17 installation
           uses: actions/setup-java@v3
