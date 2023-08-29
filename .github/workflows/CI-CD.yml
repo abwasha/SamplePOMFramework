@@ -72,7 +72,7 @@ jobs:
             mkdir ${{ vars.LINUX_PROJECT_PATH }}/$repo_name
             pwd
             ls
-            echo "Repository Folder Name: $repo_name"
+            echo "Repos itory Folder Name: $repo_name"
             cd ${{ vars.LINUX_PROJECT_PATH }}/$repo_name
             pwd
             
