@@ -88,11 +88,12 @@ jobs:
         - name: executing remote ssh commands using password
           uses: appleboy/ssh-action@v1.0.0
           with:
-            host: ${{ secrets.HOST }}
-            username: ${{ secrets.USERNAME }}
-            password: ${{ secrets.PASSWORD }}
-            port: ${{ secrets.PORT }}
-            script: whoami
+            host: ${{ vars.AWS_LINUX_HOST }}
+            username: ${{ vars.AWS_LINUX_USER }}
+            key: ${{ secrets.LINUX_SSH_KEY }}
+            script: | 
+            whoami
+            ls
 
         - name: Execute SSH commmands on remote server
           uses: JimCronqvist/action-ssh@master
