@@ -59,7 +59,7 @@ jobs:
 
     steps:
       - name: Clean-Up
-        uses: appleboy/scp-action@v0.1.4
+        uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ vars.AWS_LINUX_HOST }}
           username: ${{ vars.AWS_LINUX_USER }}
