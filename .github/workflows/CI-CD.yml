@@ -106,16 +106,16 @@ jobs:
             source: "."
             target: "${{ secrets.LINUX_PROJECT_PATH }}"
 
-        - name: SSH into AWS instance and restart
+        - name: multiple command
           uses: appleboy/ssh-action@v1.0.0
           with:
-           host: ${{ secrets.AWS_LINUX_HOST }}
-           username: ${{ secrets.LINUX_SSH_USER }}
-           key: ${{ secrets.LINUX_SSH_KEY }}
-           script: |
-            cd ${{secrets.LINUX_PROJECT_PATH }}
-            pwd
-            ls
+            host: ${{ secrets.AWS_LINUX_HOST }}
+            username: ${{ secrets.LINUX_SSH_USER }}
+            key: ${{ secrets.LINUX_SSH_KEY }}
+            port: '22'
+            script: |
+              whoami
+              ls -al
       
 
   cleanup:
