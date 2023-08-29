@@ -106,12 +106,19 @@ jobs:
             source: "."
             target: "${{ secrets.LINUX_PROJECT_PATH }}"
 
-        - name: multiple command
-          uses: appleboy/ssh-action@v1.0.0
+        - name: Execute SSH commmands on remote server
+          uses: JimCronqvist/action-ssh@master
+          with:
+            hosts: 'ec2-user@18.229.161.254'
+            privateKey: ${{ secrets.LINUX_SSH_KEY }}
+            command: ls -lah
+
+        - name: Copy via ssh
+          uses: garygrossgarten/github-action-scp@v0.8.0
           with:
             host: ${{ secrets.AWS_LINUX_HOST }}
             username: ${{ secrets.LINUX_SSH_USER }}
-            key: ${{ secrets.LINUX_SSH_KEY }}
+            password: ${{ secrets.LINUX_SSH_KEY }}
             port: '22'
             script: |
               whoami
