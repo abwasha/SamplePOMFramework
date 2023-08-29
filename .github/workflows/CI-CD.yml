@@ -52,71 +52,48 @@ jobs:
          with:
             category: "/language:${{matrix.language}}"
 
-
-  push_to_windows_ec2:
-   #needs: [build]
-   runs-on: ubuntu-latest
-   environment: AWS_Demo
-   steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      - name: Clone Repo
-        run: |
-          git clone https://github.com/abwasha/SamplePOMFramework.git
-          cd SamplePOMFramework
-          echo %cd%
-          mvn clean
-
-  push_to_Linux_ec2:
-    runs-on: ubuntu-latest
-    environment: AWS_Demo
-    steps:
-        - name: Checkout
-          uses: actions/checkout@v3.5.3
-
-
-        - name: Copy artifacts to AWS
-          uses: appleboy/scp-action@master
-          with:
-            host: ${{ vars.AWS_LINUX_HOST }}
-            username: ${{ vars.AWS_LINUX_USER }}
-            key: ${{ secrets.LINUX_SSH_KEY }}
-            source: './'
-            target: '${{ vars.LINUX_PROJECT_PATH }}'
-
-        - name: executing remote ssh commands using password
-          uses: appleboy/ssh-action@v1.0.0
-          with:
-            host: ${{ vars.AWS_LINUX_HOST }}
-            username: ${{ vars.AWS_LINUX_USER }}
-            key: ${{ secrets.LINUX_SSH_KEY }}
-            script: | 
-              whoami
-              ls
-
-        - name: Execute SSH commmands on remote server
-          uses: JimCronqvist/action-ssh@master
-          with:
-            hosts: 'ec2-user@18.229.161.254'
-            privateKey: ${{ secrets.LINUX_SSH_KEY }}
-            debug: true
-            command: ls -lah
-      
-
   cleanup:
-    needs: [build]
-    runs-on: windows-latest
+    needs: [ build ]
+    runs-on: ubuntu-latest
     environment: AWS_Demo
 
     steps:
       - name: Clean-Up
         uses: appleboy/scp-action@v0.1.4
         with:
-          host: ${{ secrets.AWS_HOST }}
-          username: ${{ secrets.AWS_USER }}
-          password : ${{ secrets.AWS_PASSWORD }}
+          host: ${{ vars.AWS_LINUX_HOST }}
+          username: ${{ vars.AWS_LINUX_USER }}
+          key: ${{ secrets.LINUX_SSH_KEY }}
           scripts: |
-            echo ${{vars.AWS_PROJECT_PATH}}
-            cd ${{vars.AWS_PROJECT_PATH}}
-            Remove-Item '${{vars.AWS_PROJECT_PATH}}\*' -Recurse
+            echo '******Clean-Up******'
+            echo {{$github.workspace}}
+
+  push_to_Linux_ec2:
+    needs: cleanup
+    runs-on: ubuntu-latest
+    environment: AWS_Demo
+    steps:
+      - name: Copy artifacts to AWS
+        uses: appleboy/scp-action@master
+        with:
+          host: ${{ vars.AWS_LINUX_HOST }}
+          username: ${{ vars.AWS_LINUX_USER }}
+          key: ${{ secrets.LINUX_SSH_KEY }}
+          source: './'
+          target: '${{ vars.LINUX_PROJECT_PATH }}'
+
+  run_tests_on_Linux_ec2:
+    needs: push_to_Linux_ec2
+    runs-on: ubuntu-latest
+    environment: AWS_Demo
+    steps:
+
+      - name: executing remote ssh commands using password
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ vars.AWS_LINUX_HOST }}
+          username: ${{ vars.AWS_LINUX_USER }}
+          key: ${{ secrets.LINUX_SSH_KEY }}
+          script: | 
+            pwd
+            mvn clean compile install
