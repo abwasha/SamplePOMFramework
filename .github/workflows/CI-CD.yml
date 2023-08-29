@@ -53,7 +53,7 @@ jobs:
             category: "/language:${{matrix.language}}"
 
 
-  push_to_ec2:
+  push_to_windows_ec2:
    #needs: [build]
    runs-on: ubuntu-latest
    environment: AWS_Demo
@@ -89,6 +89,29 @@ jobs:
       - name: SSH into EC2 and perform actions
         run: |
           ssh Demo_User@18.230.5.50 "cd ${{vars.AWS_PROJECT_PATH}} && mvn compile test"
+
+  push_to_Linux_ec2:
+      runs-on: ubuntu-latest
+      environment: AWS_DEMO
+      steps:
+        - name: Checkout code
+          uses: actions/checkout@v2
+
+        - name: Configure AWS credentials
+          uses: aws-actions/configure-aws-credentials@v3.0.1
+          with:
+            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            aws-region: sa-east-1
+
+        - name: Copy code to EC2
+          run: scp -r . Demo_User@54.207.17.206:/home/ec2-user
+
+        - name: SSH into EC2 and perform actions
+          run: |
+            ssh Demo_User@54.207.17.206 
+            cd /home/ec2-user
+            ls
 
   cleanup:
     needs: [build]
