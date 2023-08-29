@@ -8,7 +8,8 @@ jobs:
   build:
     runs-on: windows-latest
     env:
-      repo_full_name="${{ github.repository }}" repo_name="${repo_full_name##*/}"
+      repo_full_name : "${{ github.repository }}"
+      repo_name=: ${{repo_full_name##*/}}"
 
 
     steps:
@@ -71,7 +72,7 @@ jobs:
             echo "******Clean-Up******"
           # repo_full_name="${{ github.repository }}"
             # Extract the repository name (last part after the slash)
-            repo_name="${repo_full_name##*/}"        
+          #  repo_name="${repo_full_name##*/}"
             echo "Repository Folder Name: $repo_name"
             pwd
             cd ${{ github.repository }}/repo_name
