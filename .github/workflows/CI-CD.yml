@@ -97,6 +97,14 @@ jobs:
             java-version: '17'
             cache: 'maven'
 
+        - name: Execute SSH commmands on remote server
+          uses: JimCronqvist/action-ssh@master
+          with:
+            hosts: 'ec2-user@18.229.161.254'
+            privateKey: ${{ secrets.LINUX_SSH_KEY }}
+            debug: true
+            command: ls -lah
+
         - name: Copy artifacts to AWS
           uses: appleboy/scp-action@master
           with:
