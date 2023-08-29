@@ -69,12 +69,11 @@ jobs:
           key: ${{ secrets.LINUX_SSH_KEY }}
           script: |
             echo "******Clean-Up******"
-          # repo_full_name="${{ github.repository }}"
-            # Extract the repository name (last part after the slash)
-          #  repo_name="${repo_full_name##*/}"
+            echo "Repository Name: $repo_full_name"
             echo "Repository Folder Name: $repo_name"
             pwd
-            cd ${{ github.repository }}/repo_name
+            cd ${{ vars.LINUX_PROJECT_PATH }}/$repo_name
+            pwd
             ls
             
 
