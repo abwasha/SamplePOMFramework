@@ -95,11 +95,11 @@ jobs:
         - name: Copy artifacts to AWS
           uses: appleboy/scp-action@v0.2.1
           with:
-            host: ${{ secrets.AWS_INSTANCE_IP }}
-            username: ${{ secrets.AWS_SSH_USERNAME }}
-            key: ${{ secrets.SSH_PRIVATE_KEY }}
-            source: "target/your-artifact.jar"
-            target: "/path/to/remote/directory"
+            host: ${{ secrets.AWS_LINUX_HOST }}
+            username: ${{ secrets.LINUX_SSH_USER }}
+            key: ${{ secrets.LINUX_SSH_KEY }}
+            source: "./"
+            target: "${{secrets.LINUX_PROJECT_PATH }}"
 
         - name: SSH into AWS instance and restart
           uses: appleboy/ssh-action@v0.4.0
@@ -109,8 +109,6 @@ jobs:
            key: ${{ secrets.LINUX_SSH_KEY }}
            script: |
             cd ${{secrets.LINUX_PROJECT_PATH }}
-            sudo mkdir abdul
-            cd abdul
             pwd
             ls
       
