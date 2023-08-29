@@ -80,25 +80,8 @@ jobs:
           uses: appleboy/scp-action@master
           with:
             host: ${{ vars.AWS_LINUX_HOST }}
-            username: ${{ secrets.AWS_LINUX_USER }}
-            #key: ${{ secrets.AWS_LINUX_SSH }}
-            key-text: |
-              -----BEGIN OPENSSH PRIVATE KEY-----
-              AAABAQCBrCeqmZF76n5rA/3Xul2pwFgzPK72jMwV8QiVx2lzAyTGuFl9qcgStq7B
-              iqPM1OM94BuYIeRotUbJa6Wt0Z+eqQ80swidt3SnkMihDqtzRS+wTPAyjv2cGy6m
-              PjCKbPO8J31waj6Xwa7vdoVDhGFIse7CYMaqQfNBgLbdpiDKaBQtz9yVkkSrZ/kG
-              gqepGeQ4ugh5UszwwoxKgMvdbvvFDvP2hlq77tN56NhjkoT7G3vTBwRt/MM/R+tg
-              xOmBJFPTVP3K/N4AA1mZX1v2Of9xcoIWCqrQPOYvu83mfJVFrdfTaDRsmc5q3B7z
-              OmUQMXP1IecSgjN9mQJ0/mon2mVBAAAAgQDd1Z+ArTsWYkP1nGOXtn3Wca0BLhIX
-              TPhiobQgKcMkEwQi7hILGBCTzyXZK2WpeAFas+EOXrjQcytqgrVW4ZCCuUpz/7TK
-              cwlOKLBp09wSWd1D4ORAdEph2AnJumraSbbZ0+hUkmGrXUqFi5RQz9Ud17YKS6Xm
-              Xqakii3ceODAsQAAAIEAr/Bzp5A7eYqDX97yZc/kmm/PhiHFgGORPr07wTIn2MlM
-              KucrNH7fks/wDQeMUxP7c5AHpuan2LdrTEk4lDZdpnVEYOaD0oLYUL+4gx7x/Bhf
-              nhBArbfuCqKXFE9HbmcDqJRuM4lb0KH6eGweHsdMSVshpZgCHz/JNpiX25w2OAMA
-              AACBALH3YyMzXbaMl7ZxvXZEaLzHOeQqB/ZNVZdoIVDDLp43m5JBnqEce2DYeykH
-              hMnFUBYZKjPf/Cg3BXwCO+DMCxWzhfg1FWxmxU0elMn7M9rubZ0vdKZc/GqZDkBh
-              l0KLfJ+8tkaFKHIiEKfnXstdry8OUXZsToDsr+2qDeuGEI0L
-              -----END OPENSSH PRIVATE KEY-----
+            username: ${{ vars.AWS_LINUX_USER }}
+            key: ${{ vars.AWS_LINUX_SSH_KEY }}
             source: './'
             target: '${{ secrets.LINUX_PROJECT_PATH }}'
 
