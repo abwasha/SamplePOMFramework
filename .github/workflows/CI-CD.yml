@@ -82,6 +82,11 @@ jobs:
         - name: Checkout
           uses: actions/checkout@v3.5.3
 
+        - name: Copy code to AWS instance
+          run: |
+            ssh -i ${{ secrets.LINUX_SSH_USER }} ec2-user@${{ secrets.AWS_LINUX_HOST }} "mkdir -p ${{secrets.LINUX_PROJECT_PATH }}/project"
+            scp -i ${{ secrets.LINUX_SSH_USER }} -r ./ ec2-user@${{ secrets.AWS_LINUX_HOST }}:${{secrets.LINUX_PROJECT_PATH }}/project
+
         - name: Java 17 installation
           uses: actions/setup-java@v3
           with:
