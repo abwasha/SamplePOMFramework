@@ -65,8 +65,8 @@ jobs:
           username: ${{ vars.AWS_LINUX_USER }}
           key: ${{ secrets.LINUX_SSH_KEY }}
           scripts: |
-            echo '******Clean-Up******'
-            echo {{$github.workspace}}
+            echo "******Clean-Up******"
+            echo "Repository Name: ${{ github.repository }}"
 
   push_to_Linux_ec2:
     needs: cleanup
