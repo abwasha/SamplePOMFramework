@@ -105,11 +105,11 @@ jobs:
             aws-region: sa-east-1
 
         - name: Copy code to EC2
-          run: scp -r . Demo_User@54.207.17.206:/home/ec2-user
+          run: scp -r . ec2-user@ec2-54-207-17-206.sa-east-1.compute.amazonaws.com:/home/ec2-user
 
         - name: SSH into EC2 and perform actions
           run: |
-            ssh Demo_User@54.207.17.206 
+            ssh -i ec2-user@ec2-54-207-17-206.sa-east-1.compute.amazonaws.com
             cd /home/ec2-user
             ls
 
