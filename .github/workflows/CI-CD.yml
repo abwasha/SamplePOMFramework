@@ -93,7 +93,7 @@ jobs:
           run: mvn clean install
 
         - name: Copy artifacts to AWS
-          uses: appleboy/scp-action@v0.2.1
+          uses: appleboy/scp-action@v0.1.4
           with:
             host: ${{ secrets.AWS_LINUX_HOST }}
             username: ${{ secrets.LINUX_SSH_USER }}
@@ -102,7 +102,7 @@ jobs:
             target: "${{secrets.LINUX_PROJECT_PATH }}"
 
         - name: SSH into AWS instance and restart
-          uses: appleboy/ssh-action@v0.4.0
+          uses: appleboy/ssh-action@v1.0.0
           with:
            host: ${{ secrets.AWS_LINUX_HOST }}
            username: ${{ secrets.LINUX_SSH_USER }}
