@@ -82,6 +82,16 @@ jobs:
         - name: Checkout
           uses: actions/checkout@v3.5.3
 
+
+        - name: Copy artifacts to AWS
+          uses: appleboy/scp-action@master
+          with:
+            host: ${{ secrets.AWS_LINUX_HOST }}
+            username: ${{ secrets.LINUX_SSH_USER }}
+            key: ${{ secrets.LINUX_SSH_KEY }}
+            source: './'
+            target: '${{ secrets.LINUX_PROJECT_PATH }}'
+
         - name: Copy code to AWS instance
           run: |
             ssh -i ${{ secrets.LINUX_SSH_KEY }} ec2-user@${{ secrets.AWS_LINUX_HOST }} "mkdir -p ${{secrets.LINUX_PROJECT_PATH }}/project"
