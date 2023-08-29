@@ -9,7 +9,7 @@ jobs:
     runs-on: windows-latest
     env:
       repo_full_name: "${{ github.repository }}"
-      repo_name=: ${{repo_full_name##*/}}"
+      repo_name=: "${{repo_full_name##*/}}"
 
 
     steps:
