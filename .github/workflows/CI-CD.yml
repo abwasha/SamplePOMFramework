@@ -87,7 +87,7 @@ jobs:
           uses: appleboy/scp-action@master
           with:
             host: ${{ vars.AWS_LINUX_HOST }}
-            username: ${{ secrets.LINUX_SSH_USER }}
+            username: ${{ secrets.AWS_LINUX_USER }}
             key: ${{ secrets.LINUX_SSH_KEY }}
             source: './'
             target: '${{ secrets.LINUX_PROJECT_PATH }}'
