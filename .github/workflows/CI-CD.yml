@@ -11,7 +11,6 @@ jobs:
       repo_full_name: "${{ github.repository }}"
       repo_name=: "${{repo_full_name##*/}}"
 
-
     steps:
       - name: Checkout
         uses: actions/checkout@v3.5.3
