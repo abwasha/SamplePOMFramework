@@ -64,7 +64,7 @@ jobs:
           host: ${{ vars.AWS_LINUX_HOST }}
           username: ${{ vars.AWS_LINUX_USER }}
           key: ${{ secrets.LINUX_SSH_KEY }}
-          scripts: |
+          script: |
             echo "******Clean-Up******"
             echo "Repository Name: ${{ github.repository }}"
             pwd
