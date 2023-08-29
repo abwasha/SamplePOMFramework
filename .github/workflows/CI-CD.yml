@@ -86,8 +86,8 @@ jobs:
         - name: Copy artifacts to AWS
           uses: appleboy/scp-action@master
           with:
-            host: ${{ secrets.AWS_LINUX_HOST }}
-            username: ${{ secrets.LINUX_SSH_USER }}
+            host: '54.207.17.206'
+            username: 'ec2-user'
             key: ${{ secrets.LINUX_SSH_KEY }}
             source: './'
             target: '${{ secrets.LINUX_PROJECT_PATH }}'
