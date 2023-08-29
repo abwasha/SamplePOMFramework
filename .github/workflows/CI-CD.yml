@@ -92,8 +92,8 @@ jobs:
             username: ${{ vars.AWS_LINUX_USER }}
             key: ${{ secrets.LINUX_SSH_KEY }}
             script: | 
-            whoami
-            ls
+              whoami
+              ls
 
         - name: Execute SSH commmands on remote server
           uses: JimCronqvist/action-ssh@master
