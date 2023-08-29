@@ -111,6 +111,7 @@ jobs:
           with:
             hosts: 'ec2-user@18.229.161.254'
             privateKey: ${{ secrets.LINUX_SSH_KEY }}
+            debug: true
             command: ls -lah
 
         - name: Copy via ssh
