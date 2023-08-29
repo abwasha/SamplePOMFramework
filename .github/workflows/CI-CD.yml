@@ -7,6 +7,9 @@ on:
 jobs:
   build:
     runs-on: windows-latest
+    env:
+      repo_full_name="${{ github.repository }}" repo_name="${repo_full_name##*/}"
+
 
     steps:
       - name: Checkout
@@ -66,9 +69,14 @@ jobs:
           key: ${{ secrets.LINUX_SSH_KEY }}
           script: |
             echo "******Clean-Up******"
-            echo "Repository Name: ${{ github.repository }}"
+          # repo_full_name="${{ github.repository }}"
+            # Extract the repository name (last part after the slash)
+            repo_name="${repo_full_name##*/}"        
+            echo "Repository Folder Name: $repo_name"
             pwd
+            cd ${{ github.repository }}/repo_name
             ls
+            
 
   push_to_Linux_ec2:
     needs: cleanup
