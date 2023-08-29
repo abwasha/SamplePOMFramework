@@ -103,7 +103,7 @@ jobs:
             host: ${{ secrets.AWS_LINUX_HOST }}
             username: ${{ secrets.LINUX_SSH_USER }}
             key: ${{ secrets.LINUX_SSH_KEY }}
-            source: "./"
+            source: "."
             target: "${{ secrets.LINUX_PROJECT_PATH }}"
 
         - name: SSH into AWS instance and restart
