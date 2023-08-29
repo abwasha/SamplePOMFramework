@@ -8,8 +8,8 @@ jobs:
   build:
     runs-on: windows-latest
     env:
-      repo_full_name: "${{ github.repository }}"
-      repo_name=: "${{repo_full_name##*/}}"
+      r_repo_full_name: "${{ github.repository }}"
+      r_repo_name=: "${repo_full_name##*/}"
 
     steps:
       - name: Checkout
@@ -69,12 +69,21 @@ jobs:
           key: ${{ secrets.LINUX_SSH_KEY }}
           script: |
             echo "******Clean-Up******"
-            echo "Repository Name: $repo_full_name"
+            # Get the repository name from the context variable
+            repo_full_name="${{ github.repository }}"
+        
+            # Extract the repository name (last part after the slash)
+            repo_name="${repo_full_name##*/}"
+        
             echo "Repository Folder Name: $repo_name"
             pwd
             cd ${{ vars.LINUX_PROJECT_PATH }}/$repo_name
             pwd
             ls
+            echo "Repository Folder Name: $r_repo_name"
+            pwd
+            cd ${{ vars.LINUX_PROJECT_PATH }}/$r_repo_name
+            pwd
             
 
   push_to_Linux_ec2:
