@@ -85,17 +85,14 @@ jobs:
             source: './'
             target: '${{ vars.LINUX_PROJECT_PATH }}'
 
-        - name: Copy code to AWS instance
-          run: |
-            ssh -i ${{ secrets.LINUX_SSH_KEY }} ec2-user@${{ vars.AWS_LINUX_HOST }} "mkdir -p ${{vars.LINUX_PROJECT_PATH }}/project"
-            scp -i ${{ secrets.LINUX_SSH_KEY }} -r ./ ec2-user@${{ vars.AWS_LINUX_HOST }}:${{vars.LINUX_PROJECT_PATH }}/project
-
-        - name: Java 17 installation
-          uses: actions/setup-java@v3
+        - name: executing remote ssh commands using password
+          uses: appleboy/ssh-action@v1.0.0
           with:
-            distribution: 'oracle' # See 'Supported distributions' for available options
-            java-version: '17'
-            cache: 'maven'
+            host: ${{ secrets.HOST }}
+            username: ${{ secrets.USERNAME }}
+            password: ${{ secrets.PASSWORD }}
+            port: ${{ secrets.PORT }}
+            script: whoami
 
         - name: Execute SSH commmands on remote server
           uses: JimCronqvist/action-ssh@master
@@ -104,34 +101,6 @@ jobs:
             privateKey: ${{ secrets.LINUX_SSH_KEY }}
             debug: true
             command: ls -lah
-
-        - name: Copy artifacts to AWS
-          uses: appleboy/scp-action@master
-          with:
-            host: ${{ secrets.AWS_LINUX_HOST }}
-            username: ${{ secrets.LINUX_SSH_USER }}
-            key: ${{ secrets.LINUX_SSH_KEY }}
-            source: "."
-            target: "${{ secrets.LINUX_PROJECT_PATH }}"
-
-        - name: Execute SSH commmands on remote server
-          uses: JimCronqvist/action-ssh@master
-          with:
-            hosts: 'ec2-user@18.229.161.254'
-            privateKey: ${{ secrets.LINUX_SSH_KEY }}
-            debug: true
-            command: ls -lah
-
-        - name: Copy via ssh
-          uses: garygrossgarten/github-action-scp@v0.8.0
-          with:
-            host: ${{ secrets.AWS_LINUX_HOST }}
-            username: ${{ secrets.LINUX_SSH_USER }}
-            password: ${{ secrets.LINUX_SSH_KEY }}
-            port: '22'
-            script: |
-              whoami
-              ls -al
       
 
   cleanup:
