@@ -1,4 +1,4 @@
-name: Run tests on AWS instance.
+name: E2E tests on AWS instance.
 run-name: Running tests by ${{github.actor}} on ${{github.event_name}} to perform Testing
 
 on:
