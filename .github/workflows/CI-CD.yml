@@ -72,7 +72,10 @@ jobs:
             pwd
             ls            
             cd ${{ vars.LINUX_PROJECT_PATH }}/$repo_name
+            sudo rm -r *
+            echo "after deleting"
             pwd
+            ls
             
 
   push_to_Linux_ec2:
@@ -87,4 +90,4 @@ jobs:
           username: ${{ vars.AWS_LINUX_USER }}
           key: ${{ secrets.LINUX_SSH_KEY }}
           source: './'
-          target: '${{ vars.LINUX_PROJECT_PATH }}/$repo_name'
+          target: '${{ vars.LINUX_PROJECT_PATH }}/SamplePOMFramework/'
