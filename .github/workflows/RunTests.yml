@@ -2,8 +2,7 @@ name: E2E tests on AWS instance.
 run-name: ${{github.event.client_payload.sut}}> ${{github.actor}} on ${{github.event_name}} to perform Testing
 
 on:
-  repository_dispatch:
-    types: [trigger-tests]
+  workflow_dispatch:
 
 jobs:
   run_tests_on_Linux_ec2:
