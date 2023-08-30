@@ -93,4 +93,4 @@ jobs:
           username: ${{ vars.AWS_LINUX_USER }}
           key: ${{ secrets.LINUX_SSH_KEY }}
           source: './'
-          target: '${{ vars.LINUX_PROJECT_PATH }}/SamplePOMFramework/'
+          target: '${{ vars.LINUX_PROJECT_PATH }}/SamplePOMFramework'

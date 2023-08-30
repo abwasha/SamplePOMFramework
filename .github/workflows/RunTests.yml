@@ -7,6 +7,7 @@ on:
 
 jobs:
   run_tests_on_Linux_ec2:
+    name: "JD -> Running tests on AWS Instances"
     needs: push_to_Linux_ec2
     runs-on: ubuntu-latest
     environment: AWS_Demo
