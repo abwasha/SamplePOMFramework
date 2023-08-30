@@ -111,7 +111,7 @@ jobs:
           curl -X POST \
           -H "Accept: application/vnd.github.everest-preview+json" \
           -H "Authorization: Bearer ${{ secrets.GIT_PAT }}" \
-          https://api.github.com/repos/awbasha/SamplePOMFramework/dispatches \
+          https://api.github.com/repos/abwasha/SamplePOMFramework/dispatches \
           -d '{
                   "event_type": "trigger-tests",
                   "client_payload": {
