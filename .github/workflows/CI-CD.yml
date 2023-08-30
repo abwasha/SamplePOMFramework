@@ -65,6 +65,11 @@ jobs:
           key: ${{ secrets.LINUX_SSH_KEY }}
           script: |
             echo "******Clean-Up******"  
+            pwd
+            ls
+            sudo rm -r *
+            ls
+            echo "******Clean-Up finished******"  
             repo_full_name="${{ github.repository }}"
             repo_name="${repo_full_name##*/}"
             echo "Repository Name: $repo_full_name#****#$repo_name"
@@ -72,8 +77,6 @@ jobs:
             pwd
             ls            
             cd ${{ vars.LINUX_PROJECT_PATH }}/$repo_name
-            sudo rm -r *
-            echo "after deleting"
             pwd
             ls
             
