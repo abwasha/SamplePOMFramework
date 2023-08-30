@@ -52,7 +52,6 @@ jobs:
             category: "/language:${{matrix.language}}"
 
   cleanup:
-    needs: [ build ]
     runs-on: ubuntu-latest
     environment: AWS_Demo
 
