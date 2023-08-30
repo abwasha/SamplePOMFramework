@@ -22,7 +22,7 @@ jobs:
           username: ${{ vars.AWS_LINUX_USER }}
           key: ${{ secrets.LINUX_SSH_KEY }}
           script: |
-            cd ${{ vars.LINUX_PROJECT_PATH }}/$repo_name
+            cd ${{ vars.LINUX_PROJECT_PATH }}/SamplePOMFramework/
             pwd
             mvn clean compile test
 
