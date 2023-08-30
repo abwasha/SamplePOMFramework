@@ -1,0 +1,34 @@
+name: Run tests on AWS instance.
+run-name: Running tests by ${{github.actor}} on ${{github.event_name}} to perform Testing
+
+on:
+  repository_dispatch:
+    types: [trigger-tests]
+
+jobs:
+  run_tests_on_Linux_ec2:
+    needs: push_to_Linux_ec2
+    runs-on: ubuntu-latest
+    environment: AWS_Demo
+
+    steps:
+     - name: Checkout
+       uses: actions/checkout@v3.5.3
+
+     - name: executing remote ssh commands using password
+       uses: appleboy/ssh-action@v1.0.0
+       with:
+          host: ${{ vars.AWS_LINUX_HOST }}
+          username: ${{ vars.AWS_LINUX_USER }}
+          key: ${{ secrets.LINUX_SSH_KEY }}
+          script: |
+            cd ${{ vars.LINUX_PROJECT_PATH }}/$repo_name
+            pwd
+            mvn clean compile test
+
+     - name: Upload reports
+       if: always()
+       uses: actions/upload-artifact@v3.1.2
+       with:
+         name: surefire-reports
+         path: ./target/surefire-reports

@@ -1,5 +1,5 @@
 name: Continuous Integration to AWS instance.
-run-name: Executing CI/CD by ${{github.actor}} Deploy to ${{github.action.}}
+run-name: Executing CI/CD by ${{github.actor}} on ${{github.event_name}} to perform Build>Analyse>CleanUp>Push
 
 on:
   workflow_dispatch:
@@ -88,23 +88,3 @@ jobs:
           key: ${{ secrets.LINUX_SSH_KEY }}
           source: './'
           target: '${{ vars.LINUX_PROJECT_PATH }}/$repo_name'
-
-  run_tests_on_Linux_ec2:
-    needs: push_to_Linux_ec2
-    runs-on: ubuntu-latest
-    environment: AWS_Demo
-    env:
-      repo_full_name: "${{ github.repository }}"
-      repo_name=: "${repo_full_name##*/}"
-    steps:
-
-      - name: executing remote ssh commands using password
-        uses: appleboy/ssh-action@v1.0.0
-        with:
-          host: ${{ vars.AWS_LINUX_HOST }}
-          username: ${{ vars.AWS_LINUX_USER }}
-          key: ${{ secrets.LINUX_SSH_KEY }}
-          script: | 
-            cd ${{ vars.LINUX_PROJECT_PATH }}/$repo_name
-            pwd
-            mvn clean compile install
