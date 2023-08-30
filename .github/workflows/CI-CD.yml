@@ -7,10 +7,6 @@ on:
 jobs:
   build:
     runs-on: windows-latest
-    env:
-      repo_full_name: ${{ github.repository }}
-      repo_name=: ${repo_full_name##*/}
-
     steps:
       - name: Checkout
         uses: actions/checkout@v3.5.3
@@ -63,6 +59,9 @@ jobs:
     steps:
       - name: Clean-Up
         uses: appleboy/ssh-action@v1.0.0
+        env:
+          repo_full_name: ${{ github.repository }}
+          repo_name=: ${repo_full_name##*/}
         with:
           host: ${{ vars.AWS_LINUX_HOST }}
           username: ${{ vars.AWS_LINUX_USER }}
@@ -81,6 +80,9 @@ jobs:
     needs: cleanup
     runs-on: ubuntu-latest
     environment: AWS_Demo
+    env:
+      repo_full_name: ${{ github.repository }}
+      repo_name=: ${repo_full_name##*/}
     steps:
       - name: Copy artifacts to AWS
         uses: appleboy/scp-action@master
@@ -89,12 +91,15 @@ jobs:
           username: ${{ vars.AWS_LINUX_USER }}
           key: ${{ secrets.LINUX_SSH_KEY }}
           source: './'
-          target: '${{ vars.LINUX_PROJECT_PATH }}'
+          target: '${{ vars.LINUX_PROJECT_PATH }}/$repo_name'
 
   run_tests_on_Linux_ec2:
     needs: push_to_Linux_ec2
     runs-on: ubuntu-latest
     environment: AWS_Demo
+    env:
+      repo_full_name: ${{ github.repository }}
+      repo_name=: ${repo_full_name##*/}
     steps:
 
       - name: executing remote ssh commands using password
@@ -104,5 +109,6 @@ jobs:
           username: ${{ vars.AWS_LINUX_USER }}
           key: ${{ secrets.LINUX_SSH_KEY }}
           script: | 
+            cd ${{ vars.LINUX_PROJECT_PATH }}/$repo_name
             pwd
             mvn clean compile install
