@@ -2,7 +2,8 @@ name: E2E tests on AWS instance.
 run-name: ${{github.event.client_payload.sut}}> ${{github.actor}} on ${{github.event_name}} to perform Testing
 
 on:
-  workflow_dispatch:
+  repository_dispatch:
+   types: [trigger-tests]
 
 jobs:
   run_tests_on_Linux_ec2:
@@ -21,9 +22,10 @@ jobs:
           username: ${{ vars.AWS_LINUX_USER }}
           key: ${{ secrets.LINUX_SSH_KEY }}
           script: |
-            cd ${{ vars.LINUX_PROJECT_PATH }}/SamplePOMFramework/
+            echo ${{github.event.client_payload.sut}}
+            cd ${{ vars.LINUX_PROJECT_PATH }}/${{github.event.client_payload.sut}}
             pwd
-            mvn clean compile test
+            mvn clean compile install
 
      - name: Upload reports
        if: always()
