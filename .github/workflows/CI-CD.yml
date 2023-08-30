@@ -1,5 +1,5 @@
 name: Continuous Integration to AWS instance.
-run-name: Executing CI/CD by ${{github.actor}}
+run-name: Executing CI/CD by ${{github.actor}} Deploy to ${{github.action.}}
 
 on:
   workflow_dispatch:
@@ -59,19 +59,18 @@ jobs:
     steps:
       - name: Clean-Up
         uses: appleboy/ssh-action@v1.0.0
-        env:
-          repo_full_name: "${{ github.repository }}"
-          repo_name=: "${repo_full_name##*/}"
         with:
           host: ${{ vars.AWS_LINUX_HOST }}
           username: ${{ vars.AWS_LINUX_USER }}
           key: ${{ secrets.LINUX_SSH_KEY }}
           script: |
-            echo "******Clean-Up******"            
+            echo "******Clean-Up******"  
+            repo_full_name="${{ github.repository }}"
+            repo_name="${repo_full_name##*/}"
+            echo "Repository Name: $repo_full_name#****#$repo_name"
             mkdir ${{ vars.LINUX_PROJECT_PATH }}/$repo_name
             pwd
-            ls
-            echo "Repository Name: $repo_full_name#****#$repo_name"
+            ls            
             cd ${{ vars.LINUX_PROJECT_PATH }}/$repo_name
             pwd
             
@@ -80,9 +79,6 @@ jobs:
     needs: cleanup
     runs-on: ubuntu-latest
     environment: AWS_Demo
-    env:
-      repo_full_name: "${{ github.repository }}"
-      repo_name=: "${repo_full_name##*/}"
     steps:
       - name: Copy artifacts to AWS
         uses: appleboy/scp-action@master
