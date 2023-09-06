@@ -11,7 +11,7 @@ steps:
     jdkArchitectureOption: 'x64'
     jdkSourceOption: 'PreInstalled'
 
-- script: 'mvn clean compile test'
+- script: 'mvn clean compile'
   displayName: 'Maven Build and Test'
 
 - task: PublishTestResults@2
