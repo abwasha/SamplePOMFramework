@@ -12,7 +12,7 @@ steps:
     jdkSourceOption: 'PreInstalled'
 
 - script: 'mvn clean compile test'
-  displayName: 'Maven Build'
+  displayName: 'Maven Build and Test'
 
 - task: PublishTestResults@2
   inputs:
