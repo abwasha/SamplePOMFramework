@@ -1,5 +1,6 @@
 package base;
 
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -24,11 +25,13 @@ public class DriverTypeSelection {
     public WebDriver SelectBrowserTypeAndPropertiesFromPropertiesFile() {
 
          if (properties.getProperty("BROWSER").equalsIgnoreCase("chrome")) {
-            System.setProperty("webdriver.chrome.driver", properties.getProperty("CHROME_EXECUTABLE_PATH"));
+            WebDriverManager.chromedriver().setup();
+            //System.setProperty("webdriver.chrome.driver", properties.getProperty("CHROME_EXECUTABLE_PATH"));
             System.out.println("CHROME_EXECUTABLE_PATH "+properties.getProperty("CHROME_EXECUTABLE_PATH"));
             driver = new ChromeDriver();
         } else if (properties.getProperty("BROWSER").equalsIgnoreCase("firefox")) {
-            System.setProperty("webdriver.gecko.driver", properties.getProperty("FIREFOX_EXECUTABLE_PATH"));
+            WebDriverManager.firefoxdriver().setup();
+            //System.setProperty("webdriver.gecko.driver", properties.getProperty("FIREFOX_EXECUTABLE_PATH"));
             System.out.println("FIREFOX_EXECUTABLE_PATH "+properties.getProperty("FIREFOX_EXECUTABLE_PATH"));
             driver = new FirefoxDriver();
         } else {
