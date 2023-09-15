@@ -9,7 +9,7 @@ import org.testng.annotations.*;
 
 public class ContactUsTest extends BaseTest {
 
-    @Test(enabled = false)
+    @Test(enabled = true)
     public void testContactUsSubmissionForm()  {
     ContactUsPage contactUsPage= homePage.clickContactUs();
     manageWaits().waitForElementToBeVisible(contactUsPage.firstnameElement);

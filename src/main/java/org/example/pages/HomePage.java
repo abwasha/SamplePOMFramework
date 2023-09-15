@@ -13,6 +13,7 @@ public class HomePage {
     public final By searchInputTextBox = By.xpath("//input[@name='s']");
     public final By searchResultHeader = By.xpath("//div/h1[@class='search-title']");
     public HomePage(WebDriver driver) {
+
         this.driver = driver;
     }
     public ContactUsPage clickContactUs(){
