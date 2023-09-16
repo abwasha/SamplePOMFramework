@@ -3,7 +3,6 @@ package org.example.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
-import utils.BrowserWindowManager;
 import utils.ManageWaits;
 
 public class HomePage {
@@ -22,18 +21,17 @@ public class HomePage {
     }
 
     public SearchResultPage enterTextInSearchBar(String userText){
-        manageWaits().waitForElementToBeVisible(searchBox);
+        manageWaits.waitForElementToBeVisible(searchBox);
         driver.findElement(searchBox).click();
         driver.findElement(searchInputTextBox).click();
         driver.findElement(searchInputTextBox).sendKeys(userText);
         driver.findElement(searchInputTextBox).sendKeys(Keys.ENTER);
-        manageWaits().waitForElementToBeVisible(searchResultHeader);
+        manageWaits.waitForElementToBeVisible(searchResultHeader);
         return new SearchResultPage(driver);
     }
 
-    public ManageWaits manageWaits(){return new ManageWaits(driver);}
+   protected ManageWaits manageWaits= new ManageWaits(driver);
 
-    public BrowserWindowManager browserWindowManager(){return new BrowserWindowManager(driver);}
     public ConfirmationPage confirmationPage(){
         return  new ConfirmationPage(driver);
     }

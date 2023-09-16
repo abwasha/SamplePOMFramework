@@ -3,4 +3,3 @@ org\example\pages\SearchResultPage.class
 org\example\pages\HomePage.class
 utils\ManageWaits.class
 org\example\pages\ContactUsPage.class
-utils\BrowserWindowManager.class

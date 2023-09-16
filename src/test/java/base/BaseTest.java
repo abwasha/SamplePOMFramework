@@ -5,15 +5,16 @@ import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
-import utils.BrowserWindowManager;
 import utils.ManageWaits;
 import java.time.Duration;
 
 public class BaseTest {
-    public static WebDriver driver;
+    private WebDriver driver;
     protected HomePage homePage;
 
-    DriverTypeSelection driverTypeSelection= new DriverTypeSelection();
+    public ManageWaits manageWaits;
+
+    protected DriverTypeSelection driverTypeSelection= new DriverTypeSelection();
 
     @BeforeClass
     public void setUp() {
@@ -29,19 +30,11 @@ public class BaseTest {
     {
         driver.get("https://www.hexacta.com/");
         homePage = new HomePage(driver);
+        manageWaits = new ManageWaits(driver);
 
     }
-
     @AfterClass
     public void tearDown(){
         driver.quit();
     }
-
-    public BrowserWindowManager getWindowManager(){
-        return  new BrowserWindowManager(driver);
-    }
-    public ManageWaits manageWaits(){
-        return  new ManageWaits(driver);
-    }
-
 }

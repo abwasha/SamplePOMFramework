@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 public class DriverTypeSelection {
-    public static WebDriver driver;
+    private WebDriver driver;
     Properties properties = new Properties();
 
     public DriverTypeSelection() {
