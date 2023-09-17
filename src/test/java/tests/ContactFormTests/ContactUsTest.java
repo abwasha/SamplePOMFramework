@@ -11,9 +11,9 @@ public class ContactUsTest extends BaseTest {
 
     @Test(enabled = false)
     public void testContactUsSubmissionForm()  {
-    ContactUsPage contactUsPage= homePage.clickContactUs();
+    var contactUsPage= homePage.clickContactUs();
     manageWaits.waitForElementToBeVisible(contactUsPage.firstnameElement);
-    ConfirmationPage confirmationPage=contactUsPage.enterContactFormDetailsAndSubmit("A","b","C@C.COM","D");
+    var confirmationPage=contactUsPage.enterContactFormDetailsAndSubmit("A","b","C@C.COM","D");
     manageWaits.waitForElementToBeVisible(confirmationPage.confirmationTextElement);
     Assert.assertEquals(confirmationPage.getConfirmationText(),"Expected String");
 

@@ -12,7 +12,7 @@ public class SearchTextTest extends BaseTest {
     @Test(enabled = false)
     public void testSearchText()  {
 
-        SearchResultPage searchResultPage=homePage.enterTextInSearchBar("outsource");
+        var searchResultPage=homePage.enterTextInSearchBar("outsource");
         String userInputText="SUCCESSFUL COMPANIES THAT OUTSOURCED SOME OF THEIR DEVELOPMENT";
         Assert.assertTrue(searchResultPage.searchResults(userInputText), "#"+userInputText+"# -->text is not preset");
 

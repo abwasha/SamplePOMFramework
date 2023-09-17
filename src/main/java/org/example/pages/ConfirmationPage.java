@@ -19,4 +19,5 @@ public class ConfirmationPage {
         return driver.findElement (confirmationTextElement).getText();
     }
 
+
 }
